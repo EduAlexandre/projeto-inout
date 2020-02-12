@@ -1,7 +1,5 @@
 package com.fabrica.model;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Registro {
@@ -29,8 +26,8 @@ public class Registro {
 	@Column(unique = true)
 	private String cpf;
 	
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private LocalDate dataEntrada;
+	
+	private String dataEntrada;
 	
 	@Type(type = "true_false")
 	private boolean flag;
@@ -58,12 +55,12 @@ public class Registro {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
-	public LocalDate getDataEntrada() {
+	
+	public String getDataEntrada() {
 		return dataEntrada;
 	}
 
-	public void setDataEntrada(LocalDate dataEntrada) {
+	public void setDataEntrada(String dataEntrada) {
 		this.dataEntrada = dataEntrada;
 	}
 
@@ -99,6 +96,7 @@ public class Registro {
 			return false;
 		return true;
 	}
+
 	
 	
 }

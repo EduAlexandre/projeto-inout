@@ -6,4 +6,6 @@ import com.fabrica.model.Registro;
 
 public interface Registros extends JpaRepository<Registro, Long> {
 
+	Registro findByCpf(String cpf);
+
 }

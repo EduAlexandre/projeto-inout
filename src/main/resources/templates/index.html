@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="assets/css/index.css">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <title>Prototipo</title>
+</head>
+<body>
+
+    <main>
+        <div class="container">
+            <div class="espaco"></div>
+            <div class="animated slideInLeft">
+                <span>Nome da empresa ou logo</span>
+            </div>
+            <div class="espaco2"></div>
+            <div class="col s12 m8 offset-m2 l6 offset-l3 z-depth-1 animated slideInRight" id="caixa">
+                <div class="card-panel grey lighten-5 z-depth-1">
+                    <div class="row valign-wrapper">
+                    <div class="col s12">
+                        <form id="formCheck" class="col s12 "  novalidate="novalidate" th:object="${registro}" th:action="@{/salvarRegistro}" method="post">
+                            <div class="row">
+                                <div class="center">
+                                    <h5>Informe o CPF</h5>
+                                </div>
+                                <div class="espaco2"></div>
+                                <div class="input col s12">
+                                 	<input name="cpf" type="text" data-mask="000.000.000-00" placeholder="000.000.000-00" class="validate" required="" aria-required="true" th:field="*{cpf}">
+                                    <label class="active" for="first_name2">CPF</label>
+                                
+                                	<input type="text" class="validate" th:field="*{nome}" name="nome">
+                                    <label class="active" for="first_name2">Nome</label>
+                                
+                                <div class="input-field col s12"></div>
+                                    <div class="center">
+                                        <button class="btn waves-effect waves-light" type="submit" name="enviar ">Verificar</button>
+                                    </div>  
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+        
+</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+		
+	
+    <script th:src="@{assets/js/validacao.js}"></script>
+</html>
