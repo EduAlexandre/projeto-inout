@@ -1,5 +1,9 @@
 package com.fabrica.controller;
 
+import java.util.List;
+
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +31,31 @@ public class RegistroController {
 	}
 	
 	
+	@GetMapping("/lista")
+	public String showPageList(Model model) {
+		
+		List<Registro> registro = serviceRegistro.listAll();
+		model.addAttribute("registros", registro);
+		return "lista";
+	}
+	
+	@PostMapping("/pesquisar")
+	public String pesqui(@RequestParam(name = "cpf")String cpf,Model model) {
+		
+		if(!cpf.isEmpty()) {
+			Registro registro = serviceRegistro.buscarPorCpf(cpf);
+			model.addAttribute("registros", registro);
+			
+			return "lista";
+		}else {
+			List<Registro> registro = serviceRegistro.listAll();
+			model.addAttribute("registros", registro);
+			
+			return "lista";
+		}
+		
+	}
+	
 	@PostMapping("/salvarRegistro")
 	public String saveRegistro(Registro registro) {
 		
@@ -40,8 +69,36 @@ public class RegistroController {
 	public String valideCpf(@RequestParam(name = "cpf") String cpf) {
 
 		Boolean cpfChecado = serviceRegistro.verificaCPF(cpf) == null;
-		System.out.println(cpfChecado);
-		return cpfChecado.toString();
+		
+		if(cpfChecado != true) {
+			
+			return cpfChecado.toString();
+		
+		}else {
+			String valor = "true";
+			return valor.toString();
+		}
 		
 	}
+	
+	@GetMapping("/verificationFlag")
+	@ResponseBody
+	public String valideFlag(@PathParam("cpf") String cpf) {
+
+		Registro registro = serviceRegistro.searchForCpf(cpf);
+		
+		if(registro.getFlag() != true) {
+			String valor = "false";
+			
+			serviceRegistro.save(registro);
+			
+			return valor.toString();
+		}else {
+			String valor = "true";
+			return valor.toString();
+		}
+		
+	}
+	
+	
 }

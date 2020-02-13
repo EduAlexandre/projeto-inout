@@ -38,6 +38,7 @@ $(document).ready(function () {
 	            required: true,
 	            cpf: true,
 	            minlength: 11,
+	            checkFlag: true,
 	            remote:{
 	                url: '/verificationCPF',
 	                type: "post",
@@ -55,9 +56,13 @@ $(document).ready(function () {
 	        
 	    },
 	    messages:{
+	    	nome:{
+	    		require: "O campo é obrigatório."
+	    	},
 	        cpf:{
 	            required: "O campo cpf é obrigatório.",
-	            remote: "CPF informado já está cadastrado em outra conta!",
+	            remote: "Acesso negado!",
+	            checkFlag: "Bem vindo e aproveite o dia",
 	            cpf: "CPF invalido",
 	            
 	        }	
@@ -65,7 +70,32 @@ $(document).ready(function () {
             
     });
    
-    
+    jQuery.validator.addMethod("checkFlag", function(value, element) {
+		   value = jQuery.trim(value);
+		   var teste = true;
+		   $.ajax({
+                type:'GET',
+                url:'/verificationFlag',
+                async: false, 
+                dataType: "json",
+                data:{
+             	   cpf: function()
+	                      {
+	                          return $('#cpf').val();
+	                      }
+                }
+		   }).done(function(retorno) {
+	            if(retorno == true){
+	            	teste = true;
+	            }else{
+	            	teste = false;
+	            }
+	            
+	       })
+		   return teste;
+		   
+
+	}), "oiioio";
 
 
  })

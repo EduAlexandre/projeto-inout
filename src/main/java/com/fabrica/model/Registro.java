@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.Type;
-
 @Entity
 public class Registro {
 
@@ -29,8 +27,10 @@ public class Registro {
 	
 	private String dataEntrada;
 	
-	@Type(type = "true_false")
+
 	private boolean flag;
+	
+	private int quantEnt;
 
 	public Long getId() {
 		return id;
@@ -64,12 +64,24 @@ public class Registro {
 		this.dataEntrada = dataEntrada;
 	}
 
+	public boolean getFlag() {
+		return flag;
+	}
+	
 	public boolean isFlag() {
 		return flag;
 	}
 
 	public void setFlag(boolean flag) {
 		this.flag = flag;
+	}
+
+	public int getQuantEnt() {
+		return quantEnt;
+	}
+
+	public void setQuantEnt(int quantEnt) {
+		this.quantEnt = quantEnt;
 	}
 
 	@Override
