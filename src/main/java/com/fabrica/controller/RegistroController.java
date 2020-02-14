@@ -1,5 +1,6 @@
 package com.fabrica.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.websocket.server.PathParam;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fabrica.model.Registro;
 import com.fabrica.service.RegistroService;
+import com.google.gson.Gson;
 
 @Controller
 public class RegistroController {
@@ -57,9 +60,12 @@ public class RegistroController {
 	}
 	
 	@PostMapping("/salvarRegistro")
-	public String saveRegistro(Registro registro) {
+	public String saveRegistro(Registro registro,RedirectAttributes model) {
+		
 		
 		serviceRegistro.save(registro);
+		Registro registro1 = serviceRegistro.searchForCpf(registro.getCpf());
+		model.addFlashAttribute("ms", "Seja Bem Vindo "+registro1.getNome());
 		
 		return "redirect:/";
 	}
@@ -84,21 +90,38 @@ public class RegistroController {
 	@GetMapping("/verificationFlag")
 	@ResponseBody
 	public String valideFlag(@PathParam("cpf") String cpf) {
-
-		Registro registro = serviceRegistro.searchForCpf(cpf);
 		
-		if(registro.getFlag() != true) {
-			String valor = "false";
+		Boolean cpfChecado = serviceRegistro.verificaCPF(cpf) == null;
+
+		if(cpfChecado != true) {
+			Registro registro = serviceRegistro.searchForCpf(cpf);
 			
-			serviceRegistro.save(registro);
-			
-			return valor.toString();
+			if(registro.getFlag() != true) {
+				String valor = "false";
+				
+				serviceRegistro.save(registro);
+				
+				return valor.toString();
+			}else {
+				String valor = "true";
+				return valor.toString();
+			}
 		}else {
-			String valor = "true";
-			return valor.toString();
+			return "";
 		}
 		
 	}
 	
+	@GetMapping("/getName")
+    public @ResponseBody String atualizaTotal(@PathParam("cpf") String cpf) throws SQLException{	
+	
+		Registro registro = serviceRegistro.searchForCpf(cpf);
+		
+		Gson gson = new Gson(); 
+		String valor = gson.toJson(registro);
+		
+        return valor;
+
+    }
 	
 }

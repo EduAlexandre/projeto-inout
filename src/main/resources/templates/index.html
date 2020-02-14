@@ -17,6 +17,42 @@
       rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+	<!-- CDN das Mensagens -->
+	  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+	  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			toastr.options = {
+	            	"closeButton": false,
+	           		"debug": false,
+	           		"newestOnTop": false,
+	           		"progressBar": true,
+	           		"positionClass": "toast-top-full-width",
+	           		"preventDuplicates": true,
+	           		"onclick": null,
+	           		"showDuration": "200",
+	           		"hideDuration": "1000",
+	           		"timeOut": "20000",
+	           		"extendedTimeOut": "10000",
+	           		"showEasing": "swing",
+	           		"hideEasing": "linear",
+	           		"showMethod": "fadeIn",
+	           		"hideMethod": "fadeOut"
+	        	}
+	            
+	            	
+	            var t = $("#ms").text();
+	            
+				if(t != ""){
+					toastr.success(t);
+		           	$("#ms").text("");
+				}
+		})
+			
+           	
+	</script>
+
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <title>Prototipo</title>
@@ -28,6 +64,7 @@
             <div class="espaco"></div>
             <div class="animated slideInLeft">
                 <span>Nome da empresa ou logo</span>
+                <span id="ms" th:text="${ms}" hidden></span>
             </div>
             <div class="espaco2"></div>
             <div class="col s12 m8 offset-m2 l6 offset-l3 z-depth-1 animated slideInRight" id="caixa">
@@ -42,14 +79,15 @@
                                 <div class="espaco2"></div>
                                 <div class="input col s12">
                                 	<div class="row">
-	                                	<div class="input-field col s12 cpf">
-		                                 	<input name="cpf" id="cpf" type="text" data-mask="000.000.000-00" placeholder="000.000.000-00" class="validate" required="" aria-required="true" th:field="*{cpf}">
-		                                    <label class="active" for="first_name2">CPF</label>
+	                                	<div class="input-field col s12 cpf" >
+	                                		<span th:text="${teste}"></span>
+		                                 	<input inputmode="numeric" name="cpf" id="cpf" type="text" data-mask="000.000.000-00" placeholder="000.000.000-00" class="validate" required="" aria-required="true" th:field="*{cpf}">
+		                                    <label class="active" for="cpf">CPF</label>
 		                                </div>
 		                           <div  id="1nome" hidden>
 		                                	<div class="input-field col s12 ">
-		                                		<input type="text" class="validate" th:field="*{nome}" name="nome">
-		                                    	<label class="active" for="first_name2">Nome</label>
+		                                		<input id="nome" type="text" class="validate" th:field="*{nome}" name="nome">
+		                                    	<label class="active" for="nome">Nome</label>
 		                                	</div>
 		                                
 	                                <div class="input-field col s12">

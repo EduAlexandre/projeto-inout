@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     //FORM REGISTRO                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
     $("#formCheck").validate({
+    	onkeyup: false,
 	    rules:{
 	    	nome:{
 	    		required: true
@@ -43,8 +44,49 @@ $(document).ready(function () {
 	    errorPlacement: function(error, element) {
 	        if(element.attr('name') == 'cpf'){
 	        	
-	        	if(error[0].innerText != "CPF invalido"){
-	        		$(".cpf").prepend(error);
+	        	if(error[0].innerText == "Bem vindo e aproveite o dia"){
+	        		$.ajax({
+	                    type:'get',
+	                    url:'/getName',
+	                    async: false, 
+	                    dataType: "json",
+	                    data:{
+	                 	   cpf: function()
+	    	                      {
+	    	                          return $('#cpf').val();
+	    	                      }
+	                    },
+
+	                    success : function(resultado) {
+	                        var value = "Bem vindo "+resultado.nome;
+	                        
+	                        toastr.success(value);
+	                    }
+	    		   })
+	    		   
+	        		
+	        		//ta aqui
+	        	}else if(error[0].innerText == "Acesso negado!"){
+	        		$.ajax({
+	                    type:'get',
+	                    url:'/getName',
+	                    async: false, 
+	                    dataType: "json",
+	                    data:{
+	                 	   cpf: function()
+	    	                      {
+	    	                          return $('#cpf').val();
+	    	                      }
+	                    },
+
+	                    success : function(resultado) {
+	                    	var value , hora;
+	                    	hora = resultado.dataEntrada.substr(-8);
+	                        value = resultado.nome+ " Acesso negado voçê já entrou hj as "+hora;
+	                        
+	                        toastr.error(value);
+	                    }
+	    		   })
 	        	}else{
 	        		$(".cpf").prepend(error);
 	        	}
