@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+#main{
+    height: 100vh;
+    overflow: hidden;
+}
+.main{
+    overflow: hidden;
+}
+
+.espaco{
+    height: 25vh;
+}
+.espaco1{
+    height: 1vh;
+}
+.espaco2{
+    height: 2vh;
+}
+
+label {
+    width: 100%;
+  }
+  
+  .input-field label {
+    font-size: 0.8rem;
+    -webkit-transform: translateY(-140%);
+    -moz-transform: translateY(-140%);
+    -ms-transform: translateY(-140%);
+    -o-transform: translateY(-140%);
+    transform: translateY(-140%);
+  }
+  

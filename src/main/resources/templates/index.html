@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="Simple ideas for enhancing text input interactions" />
+		<meta name="keywords" content="input, text, effect, focus, transition, interaction, inspiration, web design" />
+		<meta name="author" content="Codrops" />
+    <link rel="stylesheet" href="assets/css/index.css">
 
-    <link rel="stylesheet" th:href="@{assets/css/index.css}">
-
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -21,6 +21,12 @@
 	  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 	  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
+
+	<!-- Inputs -->
+	<link rel="stylesheet" type="text/css" href="assets/css/inputs/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/inputs/demo.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/inputs/set2.css" />
+	
 	<script>
 		$(document).ready(function(){
 			toastr.options = {
@@ -59,40 +65,56 @@
 </head>
 <body>
 
-    <main>
+    <main id="main">
         <div class="container">
-            <div class="espaco"></div>
+            <div class="espaco3"></div>
             <div class="animated slideInLeft">
-                <span>Nome da empresa ou logo</span>
+                <span><img src="/assets/img/logo-itau-fb.png" style="width: 110px;"></span>
                 <span id="ms" th:text="${ms}" hidden></span>
             </div>
             <div class="espaco2"></div>
-            <div class="col s12 m8 offset-m2 l6 offset-l3 z-depth-1 animated slideInRight" id="caixa">
-                <div class="card-panel grey lighten-5 z-depth-1">
-                    <div class="row valign-wrapper">
-                    <div class="col s12">
-                        <form id="formCheck" class="col s12 "  novalidate="novalidate" th:object="${registro}" th:action="@{/salvarRegistro}" method="post">
+            <div class="card animated slideInRight">
+  				<div class="card-body ">
+                    <div class="col-12">
+                        <form id="formCheck" class="col-12 "  novalidate="novalidate" th:object="${registro}" th:action="@{/salvarRegistro}" method="post">
                             <div class="row">
-                                <div class="center">
-                                    <h5>Informe o CPF</h5>
+                                <div class="align-center">
+                                	<div class="espaco2"></div>
+                                    <h5 style="margin-left: 60px;">Informe o CPF</h5>
                                 </div>
                                 <div class="espaco2"></div>
-                                <div class="input col s12">
+                                <div class="input col-s12">
                                 	<div class="row">
-	                                	<div class="input-field col s12 cpf" >
-	                                		<span th:text="${teste}"></span>
-		                                 	<input inputmode="numeric" name="cpf" id="cpf" type="text" data-mask="000.000.000-00" placeholder="000.000.000-00" class="validate" required="" aria-required="true" th:field="*{cpf}">
-		                                    <label class="active" for="cpf">CPF</label>
+	                                	<div class="input-field col-12 cpf" >
+											<span class="input input--madoka">
+												<input class="input__field input__field--madoka" type="text" inputmode="numeric" name="cpf" id="cpf" data-mask="000.000.000-00" th:field="*{cpf}"/>
+												<label class="input__label input__label--madoka" for="cpf">
+													<svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+														<path d="m0,0l404,0l0,77l-404,0l0,-77z"/>
+													</svg>
+													<span class="input__label-content input__label-content--madoka">CPF</span>
+												</label>
+											</span>
+											 <div class="espaco2"></div>
+											<span id="verificando" class="btn btn-primary verificar" style="color= yellow !inportant">Verificar</span>
 		                                </div>
 		                           <div  id="1nome" hidden>
-		                                	<div class="input-field col s12 ">
-		                                		<input id="nome" type="text" class="validate" th:field="*{nome}" name="nome">
-		                                    	<label class="active" for="nome">Nome</label>
+		                                	<div class="input-field col-12 nome">
+			                                    <span class="input input--madoka">
+													<input class="input__field input__field--madoka" type="text" id="nome" th:field="*{nome}" name="nome"/>
+													<label class="input__label input__label--madoka" for="nome">
+														<svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+															<path d="m0,0l404,0l0,77l-404,0l0,-77z"/>
+														</svg>
+														<span class="input__label-content input__label-content--madoka">Nome</span>
+													</label>
+												</span>
 		                                	</div>
-		                                
+		                                	
 	                                <div class="input-field col s12">
 	                                    <div class="center">
-	                                        <button class="btn waves-effect waves-light" type="submit" name="enviar ">Verificar</button>
+	                                     	<div class="espaco2"></div>
+	                                        <button class="btn btn-primary" type="submit" name="enviar ">Cadastrar</button>
 	                                    </div> 
 	                                </div>
 	                                </div>
@@ -117,4 +139,41 @@
 		
 	
     <script th:src="@{assets/js/validacao.js}"></script>
+    
+    <script src="assets/js/inputs/classie.js"></script>
+		<script>
+		
+			(function() {
+				if (!String.prototype.trim) {
+					(function() {
+						// Make sure we trim BOM and NBSP
+						var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+						String.prototype.trim = function() {
+							return this.replace(rtrim, '');
+						};
+					})();
+				}
+
+				[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+					// in case the input is already filled..
+					if( inputEl.value.trim() !== '' ) {
+						classie.add( inputEl.parentNode, 'input--filled' );
+					}
+
+					// events:
+					inputEl.addEventListener( 'focus', onInputFocus );
+					inputEl.addEventListener( 'blur', onInputBlur );
+				} );
+
+				function onInputFocus( ev ) {
+					classie.add( ev.target.parentNode, 'input--filled' );
+				}
+
+				function onInputBlur( ev ) {
+					if( ev.target.value.trim() === '' ) {
+						classie.remove( ev.target.parentNode, 'input--filled' );
+					}
+				}
+			})();
+		</script>
 </html>

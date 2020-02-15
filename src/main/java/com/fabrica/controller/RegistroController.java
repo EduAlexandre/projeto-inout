@@ -88,9 +88,9 @@ public class RegistroController {
 		
 	}
 	
-	@GetMapping("/verificationFlag")
+	@PostMapping("/verificationFlag")
 	@ResponseBody
-	public String valideFlag(@PathParam("cpf") String cpf) {
+	public String valideFlag(@RequestParam(name = "cpf") String cpf) {
 		
 		Boolean cpfChecado = serviceRegistro.verificaCPF(cpf) == null;
 

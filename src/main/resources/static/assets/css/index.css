@@ -6,8 +6,13 @@
 #main{
     height: 100vh;
     overflow: hidden;
+    background: url("fundo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .main{
+	background: url("fundo.jpg");
     overflow: hidden;
 }
 
@@ -20,17 +25,21 @@
 .espaco2{
     height: 2vh;
 }
+.espaco3{
+    height: 12vh;
+}
+.verificar{
+	color: yellow !important;
+}
 
-label {
-    width: 100%;
-  }
-  
-  .input-field label {
-    font-size: 0.8rem;
-    -webkit-transform: translateY(-140%);
-    -moz-transform: translateY(-140%);
-    -ms-transform: translateY(-140%);
-    -o-transform: translateY(-140%);
-    transform: translateY(-140%);
-  }
-  
+ .msError{
+ 	font-size: 16px;
+ 	float: left;
+ 	margin-left: 30px;
+ 	margin-bottom: -110px;
+ }
+ 
+ .card{
+ 
+ 	border-radius: 10px !important;
+ }

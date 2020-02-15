@@ -1,7 +1,5 @@
 $(document).ready(function () { 
-	$("#cpf").bind('paste', function(e) {
-        e.preventDefault();
-    });
+
     //FORM REGISTRO                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
     $("#formCheck").validate({
     	onkeyup: false,
@@ -13,6 +11,7 @@ $(document).ready(function () {
 	            required: true,
 	            cpf: true,
 	            minlength: 11,
+	            checkFlag: true,
 	            remote:{
 	                url: '/verificationCPF',
 	                type: "post",
@@ -22,8 +21,7 @@ $(document).ready(function () {
 	                        return $('#cpf').val();
 	                    }
 	                }
-	            },
-	    		checkFlag: true
+	            }
 	        },
 	        submitHandler: function(form){
 	            form.submit()
@@ -32,13 +30,13 @@ $(document).ready(function () {
 	    },
 	    messages:{
 	    	nome:{
-	    		required: '<font color="red" class="msError">Este campo é obrigatório.</font>'
+	    		require: "<font color='red'>O campo é obrigatório.</font>"
 	    	},
 	        cpf:{
-	            required: '<font color="red" class="msError">O campo cpf é obrigatório.</font>',
-	            remote: '<font color="red" class="msError">Acesso negado!</font>',
-	            checkFlag:'<font color="red" class="msError">Bem vindo e aproveite o dia</font>',
-	            cpf: '<font color="red" class="msError">CPF invalido</font>',
+	            required: "<font color='red'>O campo cpf é obrigatório.</font>",
+	            remote: "<font color='red'>Acesso negado!</font>",
+	            checkFlag: "<font color='red'>Bem vindo(a) e aproveite o dia</font>",
+	            cpf: "<font color='red'>CPF invalido</font>",
 	            
 	        }	
 	    },
@@ -46,7 +44,7 @@ $(document).ready(function () {
 	    errorPlacement: function(error, element) {
 	        if(element.attr('name') == 'cpf'){
 	        	
-	        	if(error[0].innerText == "Bem vindo e aproveite o dia"){
+	        	if(error[0].innerText == "Bem vindo(a) e aproveite o dia"){
 	        		$.ajax({
 	                    type:'get',
 	                    url:'/getName',
@@ -60,7 +58,7 @@ $(document).ready(function () {
 	                    },
 
 	                    success : function(resultado) {
-	                        var value = "Bem vindo "+resultado.nome;
+	                        var value = "Bem vindo(a) "+resultado.nome;
 	                        
 	                        toastr.success(value);
 	                    }
@@ -84,7 +82,7 @@ $(document).ready(function () {
 	                    success : function(resultado) {
 	                    	var value , hora;
 	                    	hora = resultado.dataEntrada.substr(-8);
-	                        value = resultado.nome+ " Acesso negado, voçê já entrou hoje as "+hora;
+	                        value = resultado.nome+ " Acesso negado você já entrou hoje as "+hora;
 	                        
 	                        toastr.error(value);
 	                    }
@@ -106,8 +104,8 @@ $(document).ready(function () {
             
             switch(valor) {
                 case "cpf-error":
-                	$("#verificando").attr("hidden",true);
                 	$("#1nome").attr("hidden",false);
+                	console.log('foi')
                     break;
             }                    
         }
@@ -147,7 +145,7 @@ $(document).ready(function () {
 		   value = jQuery.trim(value);
 		   var teste = true;
 		   $.ajax({
-                type:'post',
+                type:'GET',
                 url:'/verificationFlag',
                 async: false, 
                 dataType: "json",
