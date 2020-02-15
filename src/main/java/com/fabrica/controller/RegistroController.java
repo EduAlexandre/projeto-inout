@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fabrica.model.Registro;
@@ -123,5 +124,18 @@ public class RegistroController {
         return valor;
 
     }
+
+    @GetMapping("/resetarStatusRegistrosNoBanco")
+	public String resetar(){
+
+		return "reset";
+	}
+
+	@PostMapping("/resetStatus")
+	public ModelAndView statusResetar(RedirectAttributes redirectAttributes, Model model){
+      serviceRegistro.alterarStatus();
+      redirectAttributes.addFlashAttribute("message", "campos alterados com sucesso");
+      return new ModelAndView("reset");
+	}
 	
 }

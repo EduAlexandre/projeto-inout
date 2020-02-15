@@ -46,4 +46,11 @@ public class RegistroService {
 		return repository.findByCpf(cpf);
 	}
 
+	public void alterarStatus(){
+
+      boolean flag = false;
+		repository.updateStatus(flag);
+
+	}
+
 }

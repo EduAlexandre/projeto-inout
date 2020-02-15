@@ -24,12 +24,13 @@ public class Registro {
 	@Column(unique = true)
 	private String cpf;
 	
-	
+	@Column(name = "data_entrada")
 	private String dataEntrada;
 	
 
 	private boolean flag;
 	
+	@Column(name = "quant_ent")
 	private int quantEnt;
 
 	public Long getId() {

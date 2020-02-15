@@ -35,7 +35,7 @@ $(document).ready(function () {
 	        cpf:{
 	            required: "<font color='red'>O campo cpf é obrigatório.</font>",
 	            remote: "<font color='red'>Acesso negado!</font>",
-	            checkFlag: "<font color='red'>Bem vindo e aproveite o dia</font>",
+	            checkFlag: "<font color='red'>Bem vindo(a) e aproveite o dia</font>",
 	            cpf: "<font color='red'>CPF invalido</font>",
 	            
 	        }	
@@ -44,7 +44,7 @@ $(document).ready(function () {
 	    errorPlacement: function(error, element) {
 	        if(element.attr('name') == 'cpf'){
 	        	
-	        	if(error[0].innerText == "Bem vindo e aproveite o dia"){
+	        	if(error[0].innerText == "Bem vindo(a) e aproveite o dia"){
 	        		$.ajax({
 	                    type:'get',
 	                    url:'/getName',
@@ -58,7 +58,7 @@ $(document).ready(function () {
 	                    },
 
 	                    success : function(resultado) {
-	                        var value = "Bem vindo "+resultado.nome;
+	                        var value = "Bem vindo(a) "+resultado.nome;
 	                        
 	                        toastr.success(value);
 	                    }
@@ -82,7 +82,7 @@ $(document).ready(function () {
 	                    success : function(resultado) {
 	                    	var value , hora;
 	                    	hora = resultado.dataEntrada.substr(-8);
-	                        value = resultado.nome+ " Acesso negado voçê já entrou hj as "+hora;
+	                        value = resultado.nome+ " Acesso negado você já entrou hoje as "+hora;
 	                        
 	                        toastr.error(value);
 	                    }
