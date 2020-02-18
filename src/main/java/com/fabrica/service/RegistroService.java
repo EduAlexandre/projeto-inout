@@ -1,6 +1,7 @@
 package com.fabrica.service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class RegistroService {
 
 	public void save(Registro registro){
 	
-		LocalDateTime data = LocalDateTime.now();
+		LocalDateTime data = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 

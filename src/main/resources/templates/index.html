@@ -23,9 +23,9 @@
 
 
 	<!-- Inputs -->
-	<link rel="stylesheet" type="text/css" href="assets/css/inputs/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="assets/css/inputs/demo.css" />
-	<link rel="stylesheet" type="text/css" href="assets/css/inputs/set2.css" />
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/inputs/normalize.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/inputs/demo.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{assets/css/inputs/set2.css}" />
 	
 	<script>
 		$(document).ready(function(){
@@ -61,7 +61,7 @@
 
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <title>Prototipo</title>
+    <title>PassCheck.me</title>
 </head>
 <body>
 
@@ -69,7 +69,7 @@
         <div class="container">
             <div class="espaco3"></div>
             <div class="animated slideInLeft">
-                <span><img src="/assets/img/logo-itau-fb.png" style="width: 110px;"></span>
+                <span><img th:src="@{/assets/img/logo-itau-fb.png}" style="width: 110px;"></span>
                 <span id="ms" th:text="${ms}" hidden></span>
             </div>
             <div class="espaco2"></div>
@@ -140,7 +140,7 @@
 	
     <script th:src="@{assets/js/validacao.js}"></script>
     
-    <script src="assets/js/inputs/classie.js"></script>
+    <script th:src="@{assets/js/inputs/classie.js}"></script>
 		<script>
 		
 			(function() {

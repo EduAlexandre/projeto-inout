@@ -63,6 +63,7 @@ $(document).ready(function () {
 	                        var value = "Bem vindo "+resultado.nome;
 	                        
 	                        toastr.success(value);
+	                        $('#cpf').val("")
 	                    }
 	    		   })
 	    		   
@@ -87,10 +88,12 @@ $(document).ready(function () {
 	                        value = resultado.nome+ " Acesso negado, voçê já entrou hoje as "+hora;
 	                        
 	                        toastr.error(value);
+	                        $('#cpf').val("")
 	                    }
 	    		   })
 	        	}else{
 	        		$(".cpf").prepend(error);
+	        		 $('#cpf').val("")
 	        	}
 	        	
 	         }
