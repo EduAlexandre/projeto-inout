@@ -1,14 +1,13 @@
 package com.fabrica.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import javax.transaction.Transactional;
 
-import com.fabrica.model.Registro;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import javax.transaction.Transactional;
-import java.util.List;
+import com.fabrica.model.Registro;
 
 public interface Registros extends JpaRepository<Registro, Long> {
 
