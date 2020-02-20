@@ -7,3 +7,12 @@ CREATE TABLE `registro` (
   `quant_ent` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC));
+
+
+CREATE TABLE `dia` (
+  `id_dia` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `dia` VARCHAR(100) NOT NULL,
+  `id_registro` int(11) NOT NULL,
+  PRIMARY KEY (`id_dia`));
+
+

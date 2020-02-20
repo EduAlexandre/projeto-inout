@@ -12,12 +12,20 @@
     background-position: center;
 }
 .main{
-	 height: 100vh;
 	background: url("fundo.jpg");
     overflow: hidden;
      background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+div.vertical
+{
+ transform: rotate(-90deg);
+ -webkit-transform: rotate(-90deg); /* Safari/Chrome */
+ -moz-transform: rotate(-90deg); /* Firefox */
+ -o-transform: rotate(-90deg); /* Opera */
+ -ms-transform: rotate(-90deg); /* IE 9 */
 }
 
 .espaco{
@@ -52,7 +60,7 @@
  
  tbody {
 display:block;
-height:150px;
+height:40vh;
 overflow:auto;
 }
 thead, tbody tr {

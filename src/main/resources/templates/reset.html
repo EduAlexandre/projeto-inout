@@ -5,7 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <title>Reset</title>
 </head>
@@ -16,10 +23,10 @@
             <div th:if="${not #strings.isEmpty(message)}">
                 <span th:text="${message}"></span>
             </div>
-
-                        <form id="formCheck" class="col s12 "  novalidate="novalidate"  th:action="@{/resetStatus}" method="post">
+						<div style="height: 40vh;"></div>
+                        <form id="formCheck" class="center"  novalidate="novalidate"  th:action="@{/resetStatus}" method="post">
                             <div class="row">
-                               <input type="submit" value="Resetar status">
+                               <input class="waves-effect waves-light btn" type="submit" value="Resetar status">
                             </div>
                         </form>
 

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fabrica.model.Registro;
+import com.fabrica.service.DiasService;
 import com.fabrica.service.RegistroService;
 import com.google.gson.Gson;
 
@@ -26,6 +27,9 @@ public class RegistroController {
 	@Autowired
 	private RegistroService serviceRegistro;
 	
+	@Autowired
+	private DiasService serviceDias;
+	
 	@GetMapping("/")
 	public String showPage(Model model) {
 		
@@ -35,11 +39,19 @@ public class RegistroController {
 	}
 	
 	
-	@GetMapping("/lista")
+	@GetMapping("/listaRegistrosNoBanco")
 	public String showPageList(Model model) {
 		
 		List<Registro> registro = serviceRegistro.listAll();
 		model.addAttribute("registros", registro);
+		model.addAttribute("tamanho", registro.size());
+		
+		model.addAttribute("sex", serviceDias.listarPornome("Sexta-feira").size());
+		model.addAttribute("sab", serviceDias.listarPornome("Sabado").size());
+		model.addAttribute("dom", serviceDias.listarPornome("Domingo").size());
+		model.addAttribute("seg", serviceDias.listarPornome("Segunda-feira").size());
+		model.addAttribute("ter", serviceDias.listarPornome("Terça-feira").size());
+		System.out.println(registro);
 		return "lista";
 	}
 	
@@ -65,6 +77,8 @@ public class RegistroController {
 		
 		
 		serviceRegistro.save(registro);
+		serviceDias.save(registro);
+		
 		Registro registro1 = serviceRegistro.searchForCpf(registro.getCpf());
 		model.addFlashAttribute("ms", "Seja Bem Vindo "+registro1.getNome());
 		
@@ -101,6 +115,7 @@ public class RegistroController {
 				String valor = "false";
 				
 				serviceRegistro.save(registro);
+				serviceDias.save(registro);
 				
 				return valor.toString();
 			}else {

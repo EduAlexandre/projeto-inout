@@ -63,13 +63,41 @@
 						
 						        <tbody>
 						          <tr th:each="list : ${registros}">
-						            <td th:text="${list.nome}">Alvin</td>
-						            <td th:text="${list.cpf}">Eclair</td>
-						            <td th:text="${list.quantEnt}">$0.87</td>
+						            <td class="center" th:text="${list.nome}">Alvin</td>
+						            <td class="center" th:text="${list.cpf}">Eclair</td>
+						            <td class="center" th:text="${list.quantEnt}">$0.87</td>
 						          </tr>
 						        </tbody>
 						      </table>
-                        
+                        	  <div class="center">
+                        	  	<span >Pessoas cadastradas : <span th:text="${tamanho}"></span></span>
+                        	  </div>
+                        	<div style="height: 20vh;"></div>
+                        	  <div class="center">
+                        		<span >Quantidade de Pessoas por dia</span>
+                        	  </div>
+                        	
+                        	<table class="highlight">
+						        <thead>
+						          <tr>
+						              <th class="center">Sex</th>
+						              <th class="center">Sab</th>
+						              <th class="center">Dom</th>
+						              <th class="center">Seg</th>
+						              <th class="center">Ter</th>
+						          </tr>
+						        </thead>
+						
+						        <tbody>
+						          <tr>
+						          	<td class="center" th:text="${sex}">Alvin</td>
+						            <td class="center" th:text="${sab}">Alvin</td>
+						           	<td class="center" th:text="${dom}">Alvin</td>
+						            <td class="center" th:text="${seg}">Alvin</td>
+						            <td class="center" th:text="${ter}">Alvin</td>
+						          </tr>
+						        </tbody>
+						      </table>
                         </div>
                         
                     </div>
