@@ -58,6 +58,7 @@
 						              <th class="center">Name</th>
 						              <th class="center">CPF</th>
 						              <th class="center">Entradas</th>
+						              <th class="center">Ações</th>
 						          </tr>
 						        </thead>
 						
@@ -66,6 +67,7 @@
 						            <td class="center" th:text="${list.nome}">Alvin</td>
 						            <td class="center" th:text="${list.cpf}">Eclair</td>
 						            <td class="center" th:text="${list.quantEnt}">$0.87</td>
+						            <td class="center" ><a th:href="@{/dias/}+${list.id}" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i></a></td>
 						          </tr>
 						        </tbody>
 						      </table>

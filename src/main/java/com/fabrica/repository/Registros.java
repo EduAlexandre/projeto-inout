@@ -1,7 +1,5 @@
 package com.fabrica.repository;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,12 +16,7 @@ public interface Registros extends JpaRepository<Registro, Long> {
 	@Transactional
 	@Modifying
 	@Query("Update Registro t SET t.flag=:title")
-	public void updateStatus(@Param("title") boolean title);
-	
-	
-	@Query(value =  "select * from registro r join dia d on r.id = d.id_registro", nativeQuery = true)
-	public List<Registro> listarTodos();
-	
+	public void updateStatus(@Param("title") boolean title);	
 	
 
 }

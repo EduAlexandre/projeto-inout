@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fabrica.model.Dia;
 import com.fabrica.model.Registro;
 import com.fabrica.service.DiasService;
 import com.fabrica.service.RegistroService;
@@ -153,4 +155,15 @@ public class RegistroController {
       return new ModelAndView("reset");
 	}
 	
+	@GetMapping("/dias/{id}")
+	public String showDias(@PathVariable("id")Integer id, Model model) {
+		
+		Registro registro = serviceRegistro.get(Long.valueOf(id));
+		model.addAttribute("registro", registro);
+
+		List<Dia> dias = serviceDias.listarPorIdRegistro(id);
+		model.addAttribute("dias", dias);
+		
+		return "dias";
+	}
 }

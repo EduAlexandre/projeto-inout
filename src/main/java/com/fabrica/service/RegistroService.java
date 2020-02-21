@@ -25,7 +25,7 @@ public class RegistroService {
 	
 		LocalDateTime data = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
         String formatDateTime = data.format(formatter);
 		
@@ -33,6 +33,10 @@ public class RegistroService {
 		registro.setFlag(true);
 		registro.setQuantEnt(registro.getQuantEnt() + 1);
 		repository.save(registro);
+	}
+	
+	public Registro get(Long id) {
+		return repository.findById(id).get();
 	}
 	
 	public Registro verificaCPF(String cpf) {

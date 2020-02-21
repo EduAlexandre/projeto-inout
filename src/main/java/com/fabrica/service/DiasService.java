@@ -41,4 +41,8 @@ public class DiasService {
 	public List<Dia> listarPornome(String nome){
 		return repository.listarTodos(nome);
 	}
+	
+	public List<Dia> listarPorIdRegistro(Integer id){
+		return repository.listarPorIdRegistro(id);
+	}
 }

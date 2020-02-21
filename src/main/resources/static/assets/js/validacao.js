@@ -60,7 +60,7 @@ $(document).ready(function () {
 	                    },
 
 	                    success : function(resultado) {
-	                        var value = "Bem vindo "+resultado.nome;
+	                        var value = "Bem Vindo(a) "+resultado.nome;
 	                        
 	                        toastr.success(value);
 	                        
@@ -85,10 +85,10 @@ $(document).ready(function () {
 	                    success : function(resultado) {
 	                    	var value , hora;
 	                    	hora = resultado.dataEntrada.substr(-8);
-	                        value = resultado.nome+ " Acesso negado, voçê já entrou hoje as "+hora;
+	                        value = resultado.nome+ " Acesso negado, Você já entrou hoje as "+hora;
 	                        
 	                        toastr.error(value);
-	                        
+	                        $("#cpf").val("");
 	                    }
 	    		   })
 	        	}else{
