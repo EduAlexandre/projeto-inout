@@ -50,9 +50,8 @@
                         </form><br>
                         
                         
-                        <div>
-                        
-                        	<table class="highlight">
+                        <div class="col-12">
+						      <table class="highlight">
 						        <thead>
 						          <tr>
 						              <th class="center">Name</th>
@@ -66,14 +65,26 @@
 						          <tr th:each="list : ${registros}">
 						            <td class="center" th:text="${list.nome}">Alvin</td>
 						            <td class="center" th:text="${list.cpf}">Eclair</td>
-						            <td class="center" th:text="${list.quantEnt}">$0.87</td>
+						            <td class="center" th:text="${list.quantEnt}">$0.87</td>	
 						            <td class="center" ><a th:href="@{/dias/}+${list.id}" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i></a></td>
 						          </tr>
 						        </tbody>
 						      </table>
+						      <div style="height: 4vh;"></div>
                         	  <div class="center">
                         	  	<span >Pessoas cadastradas : <span th:text="${tamanho}"></span></span>
                         	  </div>
+                        	  <div style="height: 4vh;"></div>
+                        	  <div class="col-12">
+	                        	<div class="row">
+	                        		<div class="left">
+			                        	<a th:href="@{'/gerarExcel'}" class="btn waves-effect waves-light">Relatorio</a>
+			                        </div>
+			                        <div class="right">
+			                        	<a th:href="@{'/pEntrada'}" class="btn waves-effect waves-light">Mais de 1 entrada</a>
+	                        		</div>
+	                        	</div>
+	                        </div>
                         	<div style="height: 20vh;"></div>
                         	  <div class="center">
                         		<span >Quantidade de Pessoas por dia</span>
@@ -99,6 +110,7 @@
 						            <td class="center" th:text="${ter}">Alvin</td>
 						          </tr>
 						        </tbody>
+						        	
 						      </table>
                         </div>
                         

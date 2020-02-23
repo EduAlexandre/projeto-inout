@@ -45,4 +45,8 @@ public class DiasService {
 	public List<Dia> listarPorIdRegistro(Integer id){
 		return repository.listarPorIdRegistro(id);
 	}
+	
+	public Dia listarPorIdRegist(Integer id){
+		return repository.listarPorIdRegist(id);
+	}
 }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="assets/css/index.css">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <title>PassCheck.me</title>
+</head>
+<body>
+
+    <main class="main">
+        <div class="col s10">
+
+            <div class="col s12 m10 offset-m2 l6 offset-l3 z-depth-1 animated slideInRight" id="caixa">
+                <div class="card-panel grey lighten-5 z-depth-1">
+                    <div class="row valign-wrapper">
+                    <div class="col s12">
+                        <div class="row">
+                       		<div class="left">
+	                        	<a th:href="@{'/listaRegistrosNoBanco'}" class="btn waves-effect waves-light">Voltar</a>
+	                        </div>
+	                        <div class="right">
+	                        	 <a th:href="@{'/gerarExcel1'}" class="btn waves-effect waves-light">Relatorio</a>
+                       		</div>
+                       	</div>
+                        
+                       
+                        
+                        <div>
+                        
+                        	<table class="highlight">
+						        <thead>
+						          <tr>
+						              <th class="center">Name</th>
+						              <th class="center">CPF</th>
+						              <th class="center">Entradas</th>
+						              <th class="center">Ações</th>
+						          </tr>
+						        </thead>
+						
+						        <tbody>
+						          <tr th:each="list : ${registros}">
+						            <td class="center" th:text="${list.nome}">Alvin</td>
+						            <td class="center" th:text="${list.cpf}">Eclair</td>
+						            <td class="center" th:text="${list.quantEnt}">$0.87</td>	
+						            <td class="center" ><a th:href="@{/dias/}+${list.id}" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i></a></td>
+						          </tr>
+						        </tbody>
+						      </table>
+                        	  <div class="center">
+                        	  	<span >Pessoas cadastradas : <span th:text="${tamanho}"></span></span>
+                        	  </div>
+                        	<div style="height: 40vh;"></div>
+                        	
+                     
+                        </div>
+                        
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+        
+</body>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</html>

@@ -44,7 +44,8 @@ public class RegistroController {
 	@GetMapping("/listaRegistrosNoBanco")
 	public String showPageList(Model model) {
 		
-		List<Registro> registro = serviceRegistro.listAll();
+		List<Registro> registro = serviceRegistro.listarTodos();
+		System.out.println(registro.get(1).getCpf());
 		model.addAttribute("registros", registro);
 		model.addAttribute("tamanho", registro.size());
 		
@@ -53,7 +54,7 @@ public class RegistroController {
 		model.addAttribute("dom", serviceDias.listarPornome("Domingo").size());
 		model.addAttribute("seg", serviceDias.listarPornome("Segunda-feira").size());
 		model.addAttribute("ter", serviceDias.listarPornome("Terça-feira").size());
-		System.out.println(registro);
+		
 		return "lista";
 	}
 	
@@ -69,9 +70,24 @@ public class RegistroController {
 			List<Registro> registro = serviceRegistro.listAll();
 			model.addAttribute("registros", registro);
 			
+			model.addAttribute("sex", serviceDias.listarPornome("Sexta-feira").size());
+			model.addAttribute("sab", serviceDias.listarPornome("Sabado").size());
+			model.addAttribute("dom", serviceDias.listarPornome("Domingo").size());
+			model.addAttribute("seg", serviceDias.listarPornome("Segunda-feira").size());
+			model.addAttribute("ter", serviceDias.listarPornome("Terça-feira").size());
 			return "lista";
 		}
 		
+	}
+	
+	@GetMapping("/pEntrada")
+	public String showPEntra(Model model ) {
+		
+		List<Registro> registro = serviceRegistro.listarTodosMaior1();
+		model.addAttribute("registros", registro);
+		model.addAttribute("tamanho", registro.size());
+		
+		return "lista+1";
 	}
 	
 	@PostMapping("/salvarRegistro")

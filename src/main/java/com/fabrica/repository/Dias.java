@@ -14,4 +14,7 @@ public interface Dias extends JpaRepository<Dia, Integer> {
 	
 	@Query(value =  "select * from dia where id_registro = ?1", nativeQuery = true)
 	public List<Dia> listarPorIdRegistro(Integer id);
+	
+	@Query(value =  "select * from dia where id_registro = ?1", nativeQuery = true)
+	public Dia listarPorIdRegist(Integer id);
 }
