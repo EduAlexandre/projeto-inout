@@ -86,8 +86,11 @@ public class Registro{
 		this.quantEnt = quantEnt;
 	}
 
+	@Override
+	public String toString() {
+		return "Registro [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", dataEntrada=" + dataEntrada + ", flag="
+				+ flag + ", quantEnt=" + quantEnt + "]";
+	}
 
-
-	
 	
 }

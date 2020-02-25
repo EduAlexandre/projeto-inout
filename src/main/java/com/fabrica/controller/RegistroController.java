@@ -44,8 +44,7 @@ public class RegistroController {
 	@GetMapping("/listaRegistrosNoBanco")
 	public String showPageList(Model model) {
 		
-		List<Registro> registro = serviceRegistro.listarTodos();
-		System.out.println(registro.get(1).getCpf());
+		List<Registro> registro = serviceRegistro.listAll();
 		model.addAttribute("registros", registro);
 		model.addAttribute("tamanho", registro.size());
 		
@@ -80,13 +79,12 @@ public class RegistroController {
 		
 	}
 	
-	@GetMapping("/pEntrada")
-	public String showPEntra(Model model ) {
-		
-		List<Registro> registro = serviceRegistro.listarTodosMaior1();
+	@GetMapping("/pEntrada/{numero}")
+	public String showPEntra(@PathVariable("numero")Integer numero,Model model ) {
+		List<Registro> registro = serviceRegistro.listarTodosMaior1(numero);
 		model.addAttribute("registros", registro);
 		model.addAttribute("tamanho", registro.size());
-		
+		model.addAttribute("entrada", numero);
 		return "lista+1";
 	}
 	

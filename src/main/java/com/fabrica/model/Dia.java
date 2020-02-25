@@ -43,6 +43,11 @@ public class Dia {
 	public void setRegistro(Registro registro) {
 		this.registro = registro;
 	}
+
+	@Override
+	public String toString() {
+		return "Dia [idDia=" + idDia + ", dia=" + dia + ", registro=" + registro + "]";
+	}
 	
 	
 	

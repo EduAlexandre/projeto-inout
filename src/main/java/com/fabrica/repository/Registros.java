@@ -22,14 +22,18 @@ public interface Registros extends JpaRepository<Registro, Long> {
 	
 	
 	
-	@Query(value = "select * from registro r join dia d on r.id = d.id_registro",nativeQuery = true)
-	List<Registro> listarTodos();
+	@Query(value = "select registro.nome,registro.cpf ,registro.quant_ent , GROUP_CONCAT(dia.dia ORDER BY dia.id_dia)  from registro inner join dia on (registro.id = dia.id_registro) GROUP BY registro.cpf",nativeQuery = true)
+	List<String> listarTodos();
 
-	@Query(value = "select * from registro where quant_ent > 1", nativeQuery = true)
-	List<Registro> listarTodosMaior1();
+	@Query(value = "select * from registro where quant_ent = ?1", nativeQuery = true)
+	List<Registro> listarTodosIgualAUmNumero(Integer numero);
 	
 	@Query(value =  "select * from dia where dia = ?1", nativeQuery = true)
-	List<Registro> lista(String string);	
+	List<Registro> lista(String string);
+	
+	
+	@Query(value = "select registro.nome,registro.cpf ,registro.quant_ent , GROUP_CONCAT(dia.dia ORDER BY dia.id_dia)  from registro inner join dia on (registro.id = dia.id_registro) where quant_ent = ?1 GROUP BY registro.cpf",nativeQuery = true)
+	List<String> listarTodosIgual(Integer numero);	
 	
 	
 	

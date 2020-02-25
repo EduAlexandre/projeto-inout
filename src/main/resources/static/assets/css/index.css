@@ -13,11 +13,7 @@
     background-position: center;
 }
 .main{
-	background: url("fundo.jpg");
     overflow: hidden;
-     background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 .main11{
 	height: 100vh;

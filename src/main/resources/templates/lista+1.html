@@ -17,7 +17,7 @@
       rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
+<script src="https://use.fontawesome.com/2b6c911870.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <title>PassCheck.me</title>
 </head>
@@ -35,7 +35,7 @@
 	                        	<a th:href="@{'/listaRegistrosNoBanco'}" class="btn waves-effect waves-light">Voltar</a>
 	                        </div>
 	                        <div class="right">
-	                        	 <a th:href="@{'/gerarExcel1'}" class="btn waves-effect waves-light">Relatorio</a>
+	                        	 <a th:href="@{'/gerarExcel1/'}+${entrada}" class="btn waves-effect waves-light">Relatorio</a>
                        		</div>
                        	</div>
                         
@@ -58,12 +58,13 @@
 						            <td class="center" th:text="${list.nome}">Alvin</td>
 						            <td class="center" th:text="${list.cpf}">Eclair</td>
 						            <td class="center" th:text="${list.quantEnt}">$0.87</td>	
-						            <td class="center" ><a th:href="@{/dias/}+${list.id}" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i></a></td>
+						            <td class="center" ><a th:href="@{/dias/}+${list.id}" class="waves-effect waves-light btn"><i class="fa fa-calendar" aria-hidden="true"></i></a></td>
 						          </tr>
 						        </tbody>
 						      </table>
+						      <div style="height: 4vh;"></div>
                         	  <div class="center">
-                        	  	<span >Pessoas cadastradas : <span th:text="${tamanho}"></span></span>
+                        	  	<span >Quantidade de pessoas com <span th:text="${entrada}"></span> entradas : <span th:text="${tamanho}"></span></span>
                         	  </div>
                         	<div style="height: 40vh;"></div>
                         	

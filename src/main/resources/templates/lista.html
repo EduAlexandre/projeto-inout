@@ -17,8 +17,7 @@
       rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<script src="https://use.fontawesome.com/2b6c911870.js"></script>
     <title>PassCheck.me</title>
 </head>
 <body>
@@ -33,7 +32,7 @@
                         <form class="col s12 "  novalidate="novalidate" th:action="@{/pesquisar}" method="post">
                             <div class="row">
                                 <div class="center">
-                                    <h5>Informe um CPF</h5>
+                                    <h5>Buscar CPF</h5>
                                 </div>
                                 <div class="espaco2"></div>
                                 <div class="input col s12">
@@ -45,11 +44,42 @@
                                     <div class="center">
                                         <button class="btn waves-effect waves-light" type="submit" name="enviar ">Pesquisar</button>
                                     </div>  
+                                    <div class="espaco3"></div>
                                 </div>
                             </div>
                         </form><br>
-                        
-                        
+                       	<div class="center">
+                       		<span >Filtrar Por</span>
+                       	</div>
+                       	<div style="height: 3vh;"></div>
+                        <div class="col s12">
+                        	<div class="row">
+                        		<div class="col s6">
+	                        		<a th:href="@{'/pEntrada/1'}" class="btn waves-effect waves-light">1 entrada</a>
+	                        	</div>
+	                        	<div class="col s6">
+	                        		<a th:href="@{'/pEntrada/2'}" class="btn waves-effect waves-light">2 entradas</a>
+	                        	</div>
+	                        	<div class="col s12">
+	                        		<div style="height: 2vh;"></div>
+	                        	</div>
+	                        	<div class="col s6">
+	                        		<a th:href="@{'/pEntrada/3'}" class="btn waves-effect waves-light">3 entradas</a>
+	                        	</div>
+	                        	<div class="col s6">
+	                        		<a th:href="@{'/pEntrada/4'}" class="btn waves-effect waves-light">4 entradas</a>
+	                        	</div>
+	                        	<div class="col s12">
+	                        		<div style="height: 2vh;"></div>
+	                        	</div>
+	                        	<div class="col s6">
+	                        		<a th:href="@{'/pEntrada/5'}" class="btn waves-effect waves-light">5 entradas</a>
+                        	 	</div>
+                        	</div>
+                      	</div>
+                        <div class="center">
+                       		<span >Lista Completa</span>
+                       	</div>
                         <div class="col-12">
 						      <table class="highlight">
 						        <thead>
@@ -65,8 +95,8 @@
 						          <tr th:each="list : ${registros}">
 						            <td class="center" th:text="${list.nome}">Alvin</td>
 						            <td class="center" th:text="${list.cpf}">Eclair</td>
-						            <td class="center" th:text="${list.quantEnt}">$0.87</td>	
-						            <td class="center" ><a th:href="@{/dias/}+${list.id}" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i></a></td>
+						            <td class="center" th:text="${list.quantEnt}">$0.87</td>
+						            <td class="center" ><a th:href="@{/dias/}+${list.id}" class="waves-effect waves-light btn"><i class="fa fa-calendar" aria-hidden="true"></i></a></td>
 						          </tr>
 						        </tbody>
 						      </table>
@@ -77,15 +107,14 @@
                         	  <div style="height: 4vh;"></div>
                         	  <div class="col-12">
 	                        	<div class="row">
-	                        		<div class="left">
-			                        	<a th:href="@{'/gerarExcel'}" class="btn waves-effect waves-light">Relatorio</a>
+	                        		<div class="col-12">
+	                        			 <div class="center">
+			                        		<a th:href="@{'/gerarExcel'}" class="btn waves-effect waves-light">Emitir Relatorio Geral</a>
+			                        	 </div>
 			                        </div>
-			                        <div class="right">
-			                        	<a th:href="@{'/pEntrada'}" class="btn waves-effect waves-light">Mais de 1 entrada</a>
-	                        		</div>
 	                        	</div>
 	                        </div>
-                        	<div style="height: 20vh;"></div>
+                        	<div style="height: 15vh;"></div>
                         	  <div class="center">
                         		<span >Quantidade de Pessoas por dia</span>
                         	  </div>
@@ -120,10 +149,11 @@
 
             </div>
         </div>
+        
     </main>
         
 </body>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+ <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js}"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js}"></script>
 </html>

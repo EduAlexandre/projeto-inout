@@ -33,7 +33,7 @@ public class RegistroService {
 		return repository.findAll();
 	}
 	
-	public List<Registro> listarTodos(){
+	public List<String> listarTodos(){
 		return repository.listarTodos();
 	}
 	
@@ -75,7 +75,7 @@ public class RegistroService {
 	}
 	
 	
-	public boolean gerarExcel(List<Registro> registro, ServletContext context, HttpServletRequest request,HttpServletResponse response) {
+	public boolean gerarExcel(List<String> registro, ServletContext context, HttpServletRequest request,HttpServletResponse response) {
 		
 		String filePath = context.getRealPath("/resources/reports");
 		File file = new File(filePath);
@@ -95,40 +95,104 @@ public class RegistroService {
 			
 			HSSFRow hssfRow = sheet.createRow(0);
 			
-			HSSFCell nome = hssfRow.createCell(0);
+			HSSFCell numero = hssfRow.createCell(0);
+			numero.setCellValue("Nº");
+			numero.setCellStyle(headerCell);
+			
+			HSSFCell nome = hssfRow.createCell(1);
 			nome.setCellValue("Nome");
 			nome.setCellStyle(headerCell);
 			
-			HSSFCell cpf = hssfRow.createCell(1);
+			HSSFCell cpf = hssfRow.createCell(2);
 			cpf.setCellValue("CPF");
 			cpf.setCellStyle(headerCell);
 			
-			HSSFCell horarioEntrada = hssfRow.createCell(2);
-			horarioEntrada.setCellValue("Horario de Entrada");
+			HSSFCell horarioEntrada = hssfRow.createCell(3);
+			horarioEntrada.setCellValue("Quantidade de Entradas");
 			horarioEntrada.setCellStyle(headerCell);
 			
-			int i = 1;
+			HSSFCell Entrada1 = hssfRow.createCell(4);
+			Entrada1.setCellValue("Entrada 1");
+			Entrada1.setCellStyle(headerCell);
 			
-			for (Registro registro2 : registro) {
+			HSSFCell Entrada2 = hssfRow.createCell(5);
+			Entrada2.setCellValue("Entrada 2");
+			Entrada2.setCellStyle(headerCell);
+			
+			HSSFCell Entrada3 = hssfRow.createCell(6);
+			Entrada3.setCellValue("Entrada 3");
+			Entrada3.setCellStyle(headerCell);
+			
+			HSSFCell Entrada4 = hssfRow.createCell(7);
+			Entrada4.setCellValue("Entrada 4");
+			Entrada4.setCellStyle(headerCell);
+			
+			HSSFCell Entrada5 = hssfRow.createCell(8);
+			Entrada5.setCellValue("Entrada 5");
+			Entrada5.setCellStyle(headerCell);
+			
+			int i = 1;
+			int cont = 1;
+			
+			for (String list: registro) {
+				
+				String[] obj = list.split(",");
+				System.out.println(obj);
+				
 				HSSFRow bodyRow = sheet.createRow(i);
 				
 				
 				HSSFCellStyle bodyCell = workbook.createCellStyle();
 				bodyCell.setFillBackgroundColor(HSSFColor.WHITE.index);
 				
-				HSSFCell nomeValor = bodyRow.createCell(0);
-				nomeValor.setCellValue(registro2.getNome());
+				HSSFCell numeroValor = bodyRow.createCell(0);
+				numeroValor.setCellValue(cont);
+				numeroValor.setCellStyle(headerCell);
+				
+				HSSFCell nomeValor = bodyRow.createCell(1);
+				nomeValor.setCellValue(obj[0]);
 				nomeValor.setCellStyle(bodyCell);
 				
-				HSSFCell cpfValor = bodyRow.createCell(1);
-				cpfValor.setCellValue(registro2.getCpf());
+				HSSFCell cpfValor = bodyRow.createCell(2);
+				cpfValor.setCellValue(obj[1]);
 				cpfValor.setCellStyle(bodyCell);
 				
-				HSSFCell horarioEntradaValor = bodyRow.createCell(2);
-				horarioEntradaValor.setCellValue(registro2.getDataEntrada());
+				HSSFCell horarioEntradaValor = bodyRow.createCell(3);
+				horarioEntradaValor.setCellValue(obj[2]);
 				horarioEntradaValor.setCellStyle(bodyCell);
 				
+				HSSFCell Entrada1Valor = bodyRow.createCell(4);
+				Entrada1Valor.setCellValue(obj[3]);
+				Entrada1Valor.setCellStyle(bodyCell);
+				
+				int t = obj.length;
+				
+				if(t >= 5){
+					HSSFCell Entrada2Valor = bodyRow.createCell(5);
+					Entrada2Valor.setCellValue(obj[4]);
+					Entrada2Valor.setCellStyle(bodyCell);
+				}
+				
+				if(t >= 6){
+					HSSFCell Entrada3Valor = bodyRow.createCell(6);
+					Entrada3Valor.setCellValue(obj[5]);
+					Entrada3Valor.setCellStyle(bodyCell);
+				}
+				
+				if(t >= 7){
+					HSSFCell Entrada4Valor = bodyRow.createCell(7);
+					Entrada4Valor.setCellValue(obj[6]);
+					Entrada4Valor.setCellStyle(bodyCell);
+				}
+				
+				if(t >= 8){
+					HSSFCell Entrada5Valor = bodyRow.createCell(8);
+					Entrada5Valor.setCellValue(obj[7]);
+					Entrada5Valor.setCellStyle(bodyCell);
+				}
+				
 				i++;
+				cont++;
 			}
 			
 			workbook.write(fileOutputStream);
@@ -144,9 +208,12 @@ public class RegistroService {
 		
 	}
 
-	public List<Registro> listarTodosMaior1() {
-		return repository.listarTodosMaior1();
+	public List<Registro> listarTodosMaior1(Integer numero) {
+		return repository.listarTodosIgualAUmNumero(numero);
 	}
-	
+
+	public List<String> listarTodosIgual(Integer numero) {
+		return repository.listarTodosIgual(numero);
+	}
 
 }
