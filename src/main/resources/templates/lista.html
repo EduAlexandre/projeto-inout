@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
-	xmlns:th="http://www.thymeleaf.org">
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sd="http://www.thymeleaf.org/spring-data">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,6 +101,14 @@
 						          </tr>
 						        </tbody>
 						      </table>
+
+							<div class="center">
+									<ul class="pagination" sd:pagination-split="7" sd:pagination="full">
+										<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+										<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+									</ul>
+							</div>
+
 						      <div style="height: 4vh;"></div>
                         	  <div class="center">
                         	  	<span >Pessoas cadastradas : <span th:text="${tamanho}"></span></span>

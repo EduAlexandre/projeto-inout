@@ -5,7 +5,10 @@ import java.util.List;
 
 import javax.websocket.server.PathParam;
 
+import com.fabrica.repository.Registros;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +34,9 @@ public class RegistroController {
 	
 	@Autowired
 	private DiasService serviceDias;
+
+	@Autowired
+	private Registros repository;
 	
 	@GetMapping("/")
 	public String showPage(Model model) {
@@ -42,10 +48,10 @@ public class RegistroController {
 	
 	
 	@GetMapping("/listaRegistrosNoBanco")
-	public String showPageList(Model model) {
+	public String showPageList(Model model, @PageableDefault(size = 5) Pageable pageable) {
 		
 		List<Registro> registro = serviceRegistro.listAll();
-		model.addAttribute("registros", registro);
+		model.addAttribute("registros", repository.findAll(pageable));
 		model.addAttribute("tamanho", registro.size());
 		
 		model.addAttribute("sex", serviceDias.listarPornome("Sexta-feira").size());
